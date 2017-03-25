@@ -1,0 +1,9 @@
+# node libraries
+node_modules/
+
+# JetBrains IDE folder
+.idea/
+
+# rendered files, but allow libraries
+static/*
+!static/lib/
