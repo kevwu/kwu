@@ -3,8 +3,8 @@
 <head>
 	<title>Kevin Wu</title>
 
-	<link rel="stylesheet" type="text/css" href="static/lib/reset.css" />
-	<link rel="stylesheet" type="text/css" href="static/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="static/lib/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 </head>
 <body>
 <main>
@@ -13,16 +13,24 @@
 	</header>
 	<section id="about">
 		<p>
-			Hello! I'm a student at the University of Texas at Austin, where I study electrical and computer engineering. I can usually be found awake at odd hours of the night, coding. I've been doing web development in one form or another for about eight years now.
+			Hello! I'm a student at the University of Texas at Austin, where I study electrical and computer
+			engineering. I can usually be found awake at odd hours of the night, coding. I've been doing web development
+			in one form or another for about eight years now.
 		</p>
 	</section>
 	<section id="status">
 		<h1 class="section-header">Latest activity</h1>
 		<p class="section-description">Online activity from the past week</p>
+		<p>I often feel like there is a disconnect between a developer's resume and their actual productivity.
+			Projects take a long time, can stall, and may never be finished. Working on a project that
+			will never see the light of day does not necessarily mean I am not learning or progressing as a developer.
+			This live activity section aims to bridge that perceived activity gap by providing a glimpse into my daily
+			actual productivity.</p>
 		<div id="status-blocks">
 			<div class="status-block" id="status-github">
 				<h2 class="section-header">GitHub</h2>
 				<p><span class="status-block-number">10</span> commits</p>
+				<p><span class="status-block-number">1254</span> lines</p>
 			</div>
 			<div class="status-block" id="status-twitter">
 				<h2 class="section-header">Twitter</h2>
@@ -40,12 +48,15 @@
 			</div>
 		</div>
 		<div id="status-commits">
+			<h2>Active projects</h2>
+			<!-- Three most active recent projects and their latest commits-->
+			<!-- TODO: What is better - showing more projects, or showing more commits? -->
 		</div>
 	</section>
 	<section id="projects">
 		<h1 class="section-header">Selected Projects</h1>
 		<div class="projects-entry">
-			<img src="static/img/nanote_thumb.gif" />
+			<img src="static/img/nanote_thumb.gif"/>
 			<div class="projects-entry-meta">
 				<h2 class="section-header">Nanote</h2>
 				<p class="projects-entry-summary">Markdown-powered note taking with LaTeX</p>
@@ -53,18 +64,22 @@
 			</div>
 		</div>
 		<div class="projects-entry">
-			<img src="static/img/panopticon_thumb.gif" />
+			<img src="static/img/panopticon_thumb.gif"/>
 			<div class="projects-entry-meta">
 				<h2 class="section-header">Panopticon</h2>
 				<p class="projects-entry-summary">Life dashboard and status display</p>
 				<p class="projects-entry-commit">Last GitHub commit: Nov. 13, 2016</p>
+				<p class="projects-entry-description">
+					Nanote is a note-taking app that features Markdown with LaTeX support, a dynamic editor with
+					highlighting, side-by-side editing, and privacy and sharing controls.
+				</p>
 			</div>
 		</div>
 	</section>
 
 </main>
 <!--<footer>-->
-	<!--<p>&copy; 2017 Kevin Wu | node-base | US Design Standards</p>-->
+<!--<p>&copy; 2017 Kevin Wu | node-base | US Design Standards</p>-->
 <!--</footer>-->
 </body>
 </html>
