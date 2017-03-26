@@ -4,6 +4,7 @@ $primary: #D6D2C4;
 $primary-darker: #a19d8f;
 $primary-emph: #BF5700;
 $base: #333F48;
+$base-darker: #382F2D;
 
 $serif-stack: 'Merriweather', serif;
 $sans-stack: 'Open Sans', sans-serif;
@@ -25,7 +26,16 @@ body {
 }
 
 h1 {
-	font-family: $serif-stack;
+	font-family: $serif-stack, serif;
+}
+
+p {
+	margin: 10px 0;
+}
+
+a {
+	color: $primary;
+	text-decoration: underline;
 }
 
 header {
@@ -35,50 +45,37 @@ header {
 	margin: 10px 0;
 
 	h1 {
-		font-family: $sans-stack;
-		text-transform: uppercase;
-		font-weight: 300;
+		//font-family: $sans-stack;
+		//text-transform: uppercase;
+		//font-weight: 300;
 		font-size: 48px;
 	}
 }
 
 main {
-	max-width: 1024px;
+	max-width: 960px;
 	margin: 0 auto;
 	padding: 15px;
 }
 
 section {
 	line-height: 135%;
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 }
 
 footer {
 	font-size: 13px;
-	position: fixed;
-	bottom: 5px;
-	right: 5px;
-}
-
-#about {
-	p {
-		font-family: $serif-stack;
-		font-size: 17px;
-		line-height: 150%;
-	}
+	text-align: center;
 }
 
 h1.section-header {
-	font-family: $sans-stack;
+	font-family: $serif-stack;
 	font-weight: 300;
 	font-size: 36px;
-	text-transform: uppercase;
 	width: 100%;
 	color: $primary-emph;
 	//text-align: center;
-	padding: 15px 0;
-	margin-bottom: 10px;
-	float: left;
+	padding-bottom: 30px;
 	display: inline-block;
 }
 
@@ -86,12 +83,7 @@ h2.section-header {
 	font-family: $serif-stack;
 	font-size: 28px;
 	height: 28px;
-}
-
-.section-description {
-	font-family: $serif-stack;
-	color: $primary-darker;
-	margin-bottom: 10px;
+	margin: 15px 0;
 }
 
 #status-blocks {
@@ -102,19 +94,71 @@ h2.section-header {
 	flex-grow: 1;
 	flex-basis: 0;
 	text-align: center;
-	background-color: #382F2D;
+	background-color: $base-darker;
 	padding: 10px;
 	margin-right: 20px;
-	border-radius: 5px;
+	border-radius: 8px;
+
 	p {
 		margin: 5px 0;
 	}
 
 	.status-block-number {
 		font-size: 24px;
+		font-family: $serif-stack;
 	}
 }
 
+.status-block:last-of-type {
+	margin-right: 0;
+}
+
+.status-commit {
+	display: block;
+	background-color: $base-darker;
+	padding: 15px;
+	border-radius: 8px;
+
+	.status-commit-repo {
+		font-family: $serif-stack;
+		font-size: 24px;
+		display: inline-block;
+	}
+}
+
+.status-commit-meta {
+	display: inline-block;
+}
+
+.status-commit-diff {
+	float: right;
+	height: 40px;
+	margin-top: 10px;
+
+	span {
+		padding: 5px;
+		color: $primary;
+		border: 1px solid $primary;
+	}
+
+	.status-commit-diff-added {
+		background-color: #2e8540;
+		border-radius: 5px 0 0 5px;
+	}
+
+	.status-commit-diff-added:before {
+		content: "+";
+	}
+
+	.status-commit-diff-removed {
+		background-color: #981b1e;
+		border-radius: 0 5px 5px 0;
+	}
+
+	.status-commit-diff-removed:before {
+		content: "-";
+	}
+}
 
 $projects-entry-img-width: 250px;
 .projects-entry {
@@ -135,4 +179,30 @@ $projects-entry-img-width: 250px;
 	.projects-entry-commit {
 		color: $primary-darker;
 	}
+
+	.projects-entry-diff {
+
+	}
+}
+
+#contact-blocks {
+	display: flex;
+}
+
+.contact-block {
+	flex-grow: 1;
+	flex-basis: 0;
+	text-align: center;
+	background-color: $base-darker;
+	padding: 10px;
+	margin-right: 20px;
+	border-radius: 8px;
+
+	p {
+		margin: 5px 0;
+	}
+}
+
+.content-block:last-of-type {
+	margin-right: 0;
 }

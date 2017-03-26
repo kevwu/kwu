@@ -20,17 +20,11 @@
 	</section>
 	<section id="status">
 		<h1 class="section-header">Latest activity</h1>
-		<p class="section-description">Online activity from the past week</p>
-		<p>I often feel like there is a disconnect between a developer's resume and their actual productivity.
-			Projects take a long time, can stall, and may never be finished. Working on a project that
-			will never see the light of day does not necessarily mean I am not learning or progressing as a developer.
-			This live activity section aims to bridge that perceived activity gap by providing a glimpse into my daily
-			actual productivity.</p>
 		<div id="status-blocks">
 			<div class="status-block" id="status-github">
 				<h2 class="section-header">GitHub</h2>
 				<p><span class="status-block-number">10</span> commits</p>
-				<p><span class="status-block-number">1254</span> lines</p>
+				<p><span class="status-block-number">1254</span> &Delta; lines</p>
 			</div>
 			<div class="status-block" id="status-twitter">
 				<h2 class="section-header">Twitter</h2>
@@ -47,20 +41,32 @@
 				<p><span class="status-block-number">10</span> emails</p>
 			</div>
 		</div>
+		<h2 class="section-header">Latest public commits</h2>
 		<div id="status-commits">
-			<h2>Active projects</h2>
-			<!-- Three most active recent projects and their latest commits-->
-			<!-- TODO: What is better - showing more projects, or showing more commits? -->
+			<div class="status-commit">
+				<div class="status-commit-meta">
+					<p class="status-commit-repo">kevwu/imp</p>
+					<span class="status-commit-relatime">2 hours ago</span>
+				</div>
+				<div class="status-commit-diff">
+					<span class="status-commit-diff-added">10</span><span class="status-commit-diff-removed">7</span>
+				</div>
+				<p class="status-commit-message">Do the thing with the thing</p>
+			</div>
 		</div>
 	</section>
 	<section id="projects">
-		<h1 class="section-header">Selected Projects</h1>
+		<h1 class="section-header">Selected projects</h1>
 		<div class="projects-entry">
 			<img src="static/img/nanote_thumb.gif"/>
 			<div class="projects-entry-meta">
 				<h2 class="section-header">Nanote</h2>
 				<p class="projects-entry-summary">Markdown-powered note taking with LaTeX</p>
 				<p class="projects-entry-commit">Last GitHub commit: Dec. 16, 2016</p>
+				<p class="projects-entry-description">
+					Nanote is a note-taking app that features Markdown with LaTeX support, a dynamic editor with
+					highlighting, side-by-side editing, and privacy and sharing controls.
+				</p>
 			</div>
 		</div>
 		<div class="projects-entry">
@@ -70,16 +76,37 @@
 				<p class="projects-entry-summary">Life dashboard and status display</p>
 				<p class="projects-entry-commit">Last GitHub commit: Nov. 13, 2016</p>
 				<p class="projects-entry-description">
-					Nanote is a note-taking app that features Markdown with LaTeX support, a dynamic editor with
-					highlighting, side-by-side editing, and privacy and sharing controls.
+					Javascript, jQuery, Forecast.Io Api · Panopticon is a purpose-built life status display for
+					at-a-glance information like the weather, upcoming events, server status, and so on.
 				</p>
 			</div>
 		</div>
 	</section>
 
+	<section id="contact">
+		<h1 class="section-header">Get in touch</h1>
+		<div id="contact-blocks">
+			<div class="contact-block">
+				<h2 class="section-header">Email</h2>
+				<p>Work inquiries, collab requests, or just say hello</p>
+			</div>
+			<div class="contact-block">
+				<h2 class="section-header">Resume</h2>
+				<p>Hire me!</p>
+			</div>
+			<div class="contact-block">
+				<h2 class="section-header">GitHub</h2>
+				<p>Source code and smaller projects</p>
+			</div>
+			<div class="contact-block">
+				<h2 class="section-header">Twitter</h2>
+				<p>Tweet @ me</p>
+			</div>
+		</div>
+	</section>
+	<footer>
+		<p>&copy; 2017 Kevin Wu | Built from <a href="https://github.com/kevwu/node-base">node-base</a> | Styles from <a href="https://standards.usa.gov/">US Design Standards</a></p>
+	</footer>
 </main>
-<!--<footer>-->
-<!--<p>&copy; 2017 Kevin Wu | node-base | US Design Standards</p>-->
-<!--</footer>-->
 </body>
 </html>
