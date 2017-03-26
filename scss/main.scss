@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:300,400');
+
+$primary: #D6D2C4;
+$primary-darker: #a19d8f;
+$primary-emph: #BF5700;
+$base: #333F48;
+
+$serif-stack: 'Merriweather', serif;
+$sans-stack: 'Open Sans', sans-serif;
+
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: $sans-stack;
+	background-color: $base;
+	color: $primary;
+}
+
+h1 {
+	font-family: $serif-stack;
+}
+
+header {
+	display: block;
+	width: 100%;
+	//text-align: center;
+	margin: 10px 0;
+
+	h1 {
+		font-family: $sans-stack;
+		text-transform: uppercase;
+		font-weight: 300;
+		font-size: 48px;
+	}
+}
+
+main {
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 15px;
+}
+
+section {
+	line-height: 135%;
+	margin-bottom: 50px;
+}
+
+footer {
+	font-size: 13px;
+	position: fixed;
+	bottom: 5px;
+	right: 5px;
+}
+
+#about {
+	p {
+		font-family: $serif-stack;
+		font-size: 17px;
+		line-height: 150%;
+	}
+}
+
+h1.section-header {
+	font-family: $sans-stack;
+	font-weight: 300;
+	font-size: 36px;
+	text-transform: uppercase;
+	width: 100%;
+	color: $primary-emph;
+	//text-align: center;
+	padding: 15px 0;
+	margin-bottom: 10px;
+	float: left;
+	display: inline-block;
+}
+
+h2.section-header {
+	font-family: $serif-stack;
+	font-size: 28px;
+	height: 28px;
+}
+
+.section-description {
+	font-family: $serif-stack;
+	color: $primary-darker;
+	margin-bottom: 10px;
+}
+
+#status-blocks {
+	display: flex;
+}
+
+.status-block {
+	flex-grow: 1;
+	flex-basis: 0;
+	text-align: center;
+	background-color: #382F2D;
+	padding: 10px;
+	margin-right: 20px;
+	border-radius: 5px;
+	p {
+		margin: 5px 0;
+	}
+
+	.status-block-number {
+		font-size: 24px;
+	}
+}
+
+
+$projects-entry-img-width: 250px;
+.projects-entry {
+	margin-bottom: 30px;
+
+	img {
+		width: $projects-entry-img-width;
+		opacity: 0.75;
+	}
+}
+
+.projects-entry-meta {
+	float: right;
+	padding: 0 15px;
+	display: block;
+	width: calc(100% - #{$projects-entry-img-width});
+
+	.projects-entry-commit {
+		color: $primary-darker;
+	}
+}
