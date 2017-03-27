@@ -7,3 +7,4 @@ node_modules/
 # rendered files, but allow libraries
 static/*
 !static/lib/
+!static/img/
