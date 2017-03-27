@@ -20,7 +20,7 @@
 		<p>
 			Hello! I'm a student at the University of Texas at Austin, where I study electrical and computer
 			engineering. I can usually be found awake at odd hours of the night, coding. I've been doing web development
-			in one form or another for about eight years now.
+			in one form or another for about eight years now. My preferred tools of the trade are Go, Node.js, vim, and Arch Linux.
 		</p>
 	</section>
 	<section id="status">
@@ -30,11 +30,12 @@
 			<div class="status-commit" data-commit="{{sha}}" data-url="{{url}}">
 				<div class="status-commit-meta">
 					<h2 class="status-commit-repo">
-						<a href="https://github.com/{{repository}}">
+						<a href="https://github.com/{{repository}}" target="_blank">
 							{{repository}}
 						</a>
 					</h2>
-					<a class="status-commit-relatime" title="{{timestamp}}" href="https://github.com/{{repository}}/commit/{{sha}}"></a>
+					<a class="status-commit-relatime" title="{{timestamp}}"
+					   href="https://github.com/{{repository}}/commit/{{sha}}" target="_blank"></a>
 				</div>
 				<div class="status-commit-diff">
 					<span class="status-commit-diff-added"></span><span class="status-commit-diff-removed"></span>
@@ -49,8 +50,12 @@
 		<div class="projects-entry">
 			<img src="static/img/nanote_thumb.gif"/>
 			<div class="projects-entry-meta">
-				<h2 class="section-header">Nanote</h2>
-				<p class="projects-entry-commit">Last GitHub commit: Dec. 16, 2016</p>
+				<h2 class="section-header">
+					<a href="https://nanote.co" target="_blank">Nanote</a>
+				</h2>
+				<p class="project-entry-builtwith">
+					Go, Babel, SCSS, MySQL
+				</p>
 				<p class="projects-entry-description">
 					Nanote is a note-taking app that features Markdown with LaTeX support, a dynamic editor with
 					highlighting, side-by-side editing, and privacy and sharing controls.
@@ -60,13 +65,15 @@
 		<div class="projects-entry">
 			<img src="static/img/panopticon_thumb.gif"/>
 			<div class="projects-entry-meta">
-				<h2 class="section-header">Panopticon</h2>
-				<p class="projects-entry-commit">Last GitHub commit: Nov. 13, 2016</p>
-				<p class="projects-entry-description">
-					Panopticon is a purpose-built life status display for at-a-glance information like the weather, upcoming events, server status, and so on.
-				</p>
+				<h2 class="section-header">
+					<a href="https://medium.com/@dejawu_/panopticon-a-first-look-e35b54d1064c" target="_blank">Panopticon</a>
+				</h2>
 				<p class="project-entry-builtwith">
-					jQuery, Forecast.Io Api, Google Calendar
+					jQuery, socket.io, forecast.io (now DarkSky) API, Google Calendar
+				</p>
+				<p class="projects-entry-description">
+					Panopticon is a purpose-built life status display for at-a-glance information such as weather,
+					upcoming events, and server status.
 				</p>
 			</div>
 		</div>
@@ -76,25 +83,34 @@
 		<h1 class="section-header">Get in touch</h1>
 		<div id="contact-blocks">
 			<div class="contact-block">
-				<h2 class="section-header">Email</h2>
+				<h2 class="section-header">
+					<a href="mailto:kevin@kevinywu.com">Email</a>
+				</h2>
 				<p>Work inquiries, collab requests, or just say hello</p>
 			</div>
 			<div class="contact-block">
-				<h2 class="section-header">Resume</h2>
-				<p>Hire me!</p>
+				<h2 class="section-header">
+					<a href="static/pdf/KevinWu-Resume.pdf" target="_blank">Resume</a>
+				</h2>
+				<p>Just like this site, but less cool</p>
 			</div>
 			<div class="contact-block">
-				<h2 class="section-header">GitHub</h2>
-				<p>Source code and smaller projects</p>
+				<h2 class="section-header">
+					<a href="https://github.com/kevwu/" target="_blank">GitHub</a>
+				</h2>
+				<p>Source code for projects</p>
 			</div>
 			<div class="contact-block">
-				<h2 class="section-header">Twitter</h2>
+				<h2 class="section-header">
+					<a href="https://twitter.com/dejawu_" target="_blank">Twitter</a>
+				</h2>
 				<p>Tweet @ me</p>
 			</div>
 		</div>
 	</section>
 	<footer>
-		<p>&copy; 2014-{{year}} Kevin Wu | Built from <a href="https://github.com/kevwu/node-base">node-base</a> | Styles from <a href="https://standards.usa.gov/">US Design Standards</a></p>
+		<p>&copy; 2014-{{year}} Kevin Wu | Built from <a href="https://github.com/kevwu/node-base" target="_blank">node-base</a>
+			| Styles from <a href="https://standards.usa.gov/" target="_blank">US Design Standards</a></p>
 	</footer>
 </main>
 </body>

@@ -89,6 +89,7 @@ h1.section-header {
 	//text-align: center;
 	padding-bottom: 30px;
 	display: inline-block;
+	line-height: 130%;
 }
 
 h2.section-header {
@@ -96,33 +97,6 @@ h2.section-header {
 	font-size: 28px;
 	height: 28px;
 	margin: 15px 0;
-}
-
-#status-blocks {
-	display: flex;
-}
-
-.status-block {
-	flex-grow: 1;
-	flex-basis: 0;
-	text-align: center;
-	background-color: $base-darker;
-	padding: 10px;
-	margin-right: 20px;
-	border-radius: 8px;
-
-	p {
-		margin: 5px 0;
-	}
-
-	.status-block-number {
-		font-size: 24px;
-		font-family: $serif-stack;
-	}
-}
-
-.status-block:last-of-type {
-	margin-right: 0;
 }
 
 .status-commit {
@@ -203,12 +177,8 @@ $projects-entry-img-width: 250px;
 	display: block;
 	width: calc(100% - #{$projects-entry-img-width});
 
-	.projects-entry-commit {
+	.projects-entry-commit, .project-entry-builtwith {
 		color: $primary-darker;
-	}
-
-	.projects-entry-diff {
-
 	}
 }
 
