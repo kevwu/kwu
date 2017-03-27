@@ -1,7 +1,3 @@
-# node-base
+# kwu.io
 
-Basic node.js project, just add water
-
-## Usage
-
-Run `npm install` to install packages, then `gulp` to build JS and CSS.
+This is the code for my personal website.
