@@ -25,17 +25,21 @@ body {
 	color: $primary;
 }
 
+a {
+	color: $primary;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 h1 {
 	font-family: $serif-stack, serif;
 }
 
 p {
 	margin: 10px 0;
-}
-
-a {
-	color: $primary;
-	text-decoration: underline;
 }
 
 header {
@@ -66,6 +70,14 @@ section {
 footer {
 	font-size: 13px;
 	text-align: center;
+
+	a {
+		text-decoration: underline;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
 }
 
 h1.section-header {
@@ -118,11 +130,26 @@ h2.section-header {
 	background-color: $base-darker;
 	padding: 15px;
 	border-radius: 8px;
+	margin-bottom: 15px;
 
 	.status-commit-repo {
+		margin: 5px 0;
 		font-family: $serif-stack;
 		font-size: 24px;
 		display: inline-block;
+		
+		a {
+			text-decoration: none;
+		}
+		
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.status-commit-relatime {
+		margin-left: 5px;
+		color: $primary-darker;
 	}
 }
 

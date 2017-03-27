@@ -3,6 +3,11 @@
 <head>
 	<title>Kevin Wu</title>
 
+	<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+	<script src="static/js/main.js"></script>
 	<link rel="stylesheet" type="text/css" href="static/lib/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="static/css/main.css"/>
 </head>
@@ -21,16 +26,22 @@
 	<section id="status">
 		<h1 class="section-header">Latest public commits</h1>
 		<div id="status-commits">
-			<div class="status-commit">
+			{{#commits}}
+			<div class="status-commit" data-commit="{{sha}}" data-url="{{url}}">
 				<div class="status-commit-meta">
-					<p class="status-commit-repo">kevwu/imp</p>
-					<span class="status-commit-relatime">2 hours ago</span>
+					<h2 class="status-commit-repo">
+						<a href="https://github.com/{{repository}}">
+							{{repository}}
+						</a>
+					</h2>
+					<a class="status-commit-relatime" title="{{timestamp}}" href="https://github.com/{{repository}}/commit/{{sha}}"></a>
 				</div>
 				<div class="status-commit-diff">
-					<span class="status-commit-diff-added">10</span><span class="status-commit-diff-removed">7</span>
+					<span class="status-commit-diff-added"></span><span class="status-commit-diff-removed"></span>
 				</div>
-				<p class="status-commit-message">Do the thing with the thing</p>
+				<p class="status-commit-message">{{message}}</p>
 			</div>
+			{{/commits}}
 		</div>
 	</section>
 	<section id="projects">
@@ -39,7 +50,6 @@
 			<img src="static/img/nanote_thumb.gif"/>
 			<div class="projects-entry-meta">
 				<h2 class="section-header">Nanote</h2>
-				<p class="projects-entry-summary">Markdown-powered note taking with LaTeX</p>
 				<p class="projects-entry-commit">Last GitHub commit: Dec. 16, 2016</p>
 				<p class="projects-entry-description">
 					Nanote is a note-taking app that features Markdown with LaTeX support, a dynamic editor with
@@ -51,7 +61,6 @@
 			<img src="static/img/panopticon_thumb.gif"/>
 			<div class="projects-entry-meta">
 				<h2 class="section-header">Panopticon</h2>
-				<p class="projects-entry-summary">Life dashboard and status display</p>
 				<p class="projects-entry-commit">Last GitHub commit: Nov. 13, 2016</p>
 				<p class="projects-entry-description">
 					Panopticon is a purpose-built life status display for at-a-glance information like the weather, upcoming events, server status, and so on.

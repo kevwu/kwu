@@ -18,7 +18,7 @@ let server = http.createServer(app).listen(8080, function () {
 // how long to cache Github results
 const CACHE_TIME = 1000 * 60 * 5 // five minutes
 // how many recent commits to fetch
-const FETCH_COUNT = 5
+const FETCH_COUNT = 3
 let githubLastUpdated = 0
 let githubCache = {
 	commits: [],
@@ -27,14 +27,13 @@ let githubCache = {
 fetchGithub(()=>{})
 
 app.get("/", (req, res) => {
-	fetchGithub((githubData, error = null) => {
-		console.log(githubData)
-
+	fetchGithub((commits, error = null) => {
 		res.send(
 			Mustache.to_html(
 				fs.readFileSync(path.join(__dirname, "index.html")).toString(),
 				{
 					year: new Date().getFullYear(),
+					commits: commits,
 				}
 			)
 		)
@@ -75,12 +74,20 @@ function fetchGithub(callback) {
 				continue
 			}
 
-			commits = commits.concat(event.payload.commits)
+			for(let c = 0; c < event.payload.commits.length; c += 1) {
+				let commit = event.payload.commits[c]
+				commit.timestamp = event.created_at
+				commit.repository = event.repo.name
+
+				commits.push(commit)
+			}
 		}
+
+		commits = commits.slice(0,FETCH_COUNT)
 
 		console.log(commits)
 
-
+		githubCache.commits = commits
 		githubLastUpdated = Date.now()
 		callback(commits)
 	})
