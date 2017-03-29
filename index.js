@@ -16,7 +16,7 @@ let server = http.createServer(app).listen(8080, function () {
 })
 
 // how long to cache Github results
-const CACHE_TIME = 1000 * 60 * 5 // five minutes
+const CACHE_TIME = 1000 * 60 * 3 // three minutes
 // how many recent commits to fetch
 const FETCH_COUNT = 3
 let githubLastUpdated = 0
@@ -44,13 +44,13 @@ function fetchGithub(callback) {
 	// implement very simple caching
 	if(Date.now() - githubLastUpdated < CACHE_TIME) {
 		console.log("Serving from cache.")
-		// cache has not yet expired, just serve from that
 
 		callback(githubCache.commits)
 		return
 	}
 
 	// otherwise, fetch fresh data, cache, and serve
+	console.log("Fetching fresh GitHub data.")
 	request.get({
 		url: "https://api.github.com/users/kevwu/events",
 		headers: {
@@ -84,8 +84,6 @@ function fetchGithub(callback) {
 		}
 
 		commits = commits.slice(0,FETCH_COUNT)
-
-		console.log(commits)
 
 		githubCache.commits = commits
 		githubLastUpdated = Date.now()
