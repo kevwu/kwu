@@ -26,23 +26,27 @@
 	<section id="status">
 		<h1 class="section-header">Latest public commits</h1>
 		<div id="status-commits">
-			{{#commits}}
-			<div class="status-commit" data-commit="{{sha}}" data-url="{{url}}">
-				<div class="status-commit-meta">
-					<h2 class="status-commit-repo">
-						<a href="https://github.com/{{repository}}" target="_blank">
-							{{repository}}
-						</a>
-					</h2>
-					<a class="status-commit-relatime" title="{{timestamp}}"
-					   href="https://github.com/{{repository}}/commit/{{sha}}" target="_blank"></a>
+			{{#error}}
+				<p>An error occurred while retrieving repository data. :(</p>
+			{{/error}}
+			{{^error}}
+				{{#commits}}
+				<div class="status-commit">
+					<div class="status-commit-meta">
+						<h2 class="status-commit-repo">
+							<a href="https://github.com/{{repository}}" target="_blank">
+								{{repository}}
+							</a>
+						</h2>
+						<span class="status-commit-relatime" title="{{date}}">{{relaTime}}</span>
+					</div>
+					<div class="status-commit-diff">
+						<span class="status-commit-diff-added">{{additions}}</span><span class="status-commit-diff-removed">{{deletions}}</span>
+					</div>
+					<p class="status-commit-message">{{message}}</p>
 				</div>
-				<div class="status-commit-diff">
-					<span class="status-commit-diff-added"></span><span class="status-commit-diff-removed"></span>
-				</div>
-				<p class="status-commit-message">{{message}}</p>
-			</div>
-			{{/commits}}
+				{{/commits}}
+			{{/error}}
 		</div>
 	</section>
 	<section id="projects">

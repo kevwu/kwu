@@ -7,7 +7,8 @@ let Mustache = require("mustache")
 
 let path = require("path")
 
-let request = require("request")
+let Bluebird = require("bluebird")
+let rp = require("request-promise")
 
 app.use("/static", express.static("static"))
 
@@ -18,7 +19,7 @@ let server = http.createServer(app).listen(8080, function () {
 // how long to cache Github results
 const CACHE_TIME = 1000 * 60 * 3 // three minutes
 // how many recent commits to fetch
-const FETCH_COUNT = 3
+const FETCH_COUNT = 4
 let githubLastUpdated = 0
 let githubCache = {
 	commits: [],
@@ -27,13 +28,14 @@ let githubCache = {
 fetchGithub(()=>{})
 
 app.get("/", (req, res) => {
-	fetchGithub((commits, error = null) => {
+	fetchGithub((commits, error = false) => {
 		res.send(
 			Mustache.to_html(
 				fs.readFileSync(path.join(__dirname, "index.html")).toString(),
 				{
 					year: new Date().getFullYear(),
 					commits: commits,
+					error: error,
 				}
 			)
 		)
@@ -42,7 +44,7 @@ app.get("/", (req, res) => {
 
 function fetchGithub(callback) {
 	// implement very simple caching
-	if(Date.now() - githubLastUpdated < CACHE_TIME) {
+	if( (Date.now() - githubLastUpdated) < CACHE_TIME) {
 		console.log("Serving from cache.")
 
 		callback(githubCache.commits)
@@ -51,7 +53,7 @@ function fetchGithub(callback) {
 
 	// otherwise, fetch fresh data, cache, and serve
 	console.log("Fetching fresh GitHub data.")
-	request.get({
+	rp({
 		url: "https://api.github.com/users/kevwu/events",
 		headers: {
 			'User-Agent': 'kevwu-kwu-site'
@@ -60,33 +62,97 @@ function fetchGithub(callback) {
 		if (error !== null || response.statusCode !== 200) {
 			console.log("Error occurred, serving from cache instead.")
 			console.log(error)
+			console.log(response.body)
 
-			callback(null, error)
+			callback(null, true)
 			return
 		}
 
-		githubRaw = JSON.parse(body)
+		let events = JSON.parse(body)
 		let commits = []
+		let commitPromises = []
+		let commitCount = 0
 
-		for(let i = 0; i < githubRaw.length; i += 1) {
-			let event = githubRaw[i]
-			if(event.type !== "PushEvent") {
-				continue
-			}
+		events.filter((event) => {
+			return event.type === "PushEvent"
+		}).forEach((event, i) => {
+			event.payload.commits.forEach((commit) => {
+				if(commitCount >= FETCH_COUNT) {
+					return
+				}
 
-			for(let c = 0; c < event.payload.commits.length; c += 1) {
-				let commit = event.payload.commits[c]
-				commit.timestamp = event.created_at
-				commit.repository = event.repo.name
+				commitPromises.push(rp({
+					url: commit.url,
+					headers: {
+						'User-Agent': 'kevwu-kwu-site'
+					}
+				}))
+				commitCount += 1
+			})
+		})
 
-				commits.push(commit)
-			}
-		}
+		Bluebird.all(commitPromises).spread((...results) => {
+			results.forEach((commit) => {
+				commit = JSON.parse(commit)
+				commits.push({
+					date: commit.commit.author.date,
+					relaTime: relativeTime(Date.now(), new Date(commit.commit.author.date).getTime()),
+					message: commit.commit.message,
+					additions: commit.stats.additions,
+					deletions: commit.stats.deletions,
+					url: commit.html_url,
+					repository: commit.html_url.substring(0,commit.html_url.indexOf("/commit/")).replace("https://github.com/", "")
+				})
+			})
 
-		commits = commits.slice(0,FETCH_COUNT)
+			commits.sort((a, b) => {
+				return (new Date(b.date).getTime()) - (new Date(a.date).getTime());
+			})
+			console.log(commits)
 
-		githubCache.commits = commits
-		githubLastUpdated = Date.now()
-		callback(commits)
+			githubCache.commits = commits
+			githubLastUpdated = Date.now()
+			callback(commits)
+		})
 	})
+}
+
+function relativeTime(current, previous) {
+	const msPerMinute = 60 * 1000
+	const msPerHour = msPerMinute * 60
+	const msPerDay = msPerHour * 24
+	const msPerMonth = msPerDay * 30
+	const msPerYear = msPerDay * 365
+
+	let elapsed = current - previous
+
+	let delta
+	let unitString
+
+	if (elapsed < msPerMinute) {
+		return "a few seconds ago"
+	}
+	else if (elapsed < msPerHour) {
+		delta = Math.round(elapsed / msPerMinute)
+		unitString = (delta === 1) ? "minute" : "minutes"
+	}
+	else if (elapsed < msPerDay) {
+		delta = Math.round(elapsed / msPerHour)
+		unitString = (delta === 1) ? "hour" : "hours"
+	}
+	else if (elapsed < msPerMonth) {
+		delta = Math.round(elapsed / msPerDay)
+		unitString = (delta === 1) ? "day" : "days"
+
+	}
+	else if (elapsed < msPerYear) {
+		delta = Math.round(elapsed / msPerMonth)
+		unitString = (delta === 1) ? "month" : "months"
+	}
+	else {
+		delta = Math.round(elapsed / msPerYear)
+		unitString = (delta === 1) ? "year" : "years"
+	}
+
+	return delta + " " + unitString + " ago"
 }
