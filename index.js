@@ -12,7 +12,7 @@ let rp = require("request-promise")
 
 app.use("/static", express.static("static"))
 
-let server = http.createServer(app).listen(8080, function () {
+http.createServer(app).listen(8080, function () {
 	console.log("HTTP server listening.");
 })
 
@@ -54,7 +54,7 @@ function fetchGithub(callback) {
 	// otherwise, fetch fresh data, cache, and serve
 	console.log("Fetching fresh GitHub data.")
 	rp({
-		url: "https://api.github.com/users/kevwu/events",
+		url: "https://api.github.com/users/kevwu/events?page=1",
 		headers: {
 			'User-Agent': 'kevwu-kwu-site'
 		}
@@ -108,7 +108,6 @@ function fetchGithub(callback) {
 			commits.sort((a, b) => {
 				return (new Date(b.date).getTime()) - (new Date(a.date).getTime());
 			})
-			console.log(commits)
 
 			githubCache.commits = commits
 			githubLastUpdated = Date.now()

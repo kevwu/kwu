@@ -80,13 +80,16 @@ footer {
 	}
 }
 
+#about p {
+	line-height: 150%;
+}
+
 h1.section-header {
 	font-family: $serif-stack;
 	font-weight: 300;
 	font-size: 36px;
 	width: 100%;
 	color: $primary-emph;
-	//text-align: center;
 	padding-bottom: 30px;
 	display: inline-block;
 	line-height: 130%;
